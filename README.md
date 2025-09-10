@@ -2,7 +2,9 @@
 
 ## Data Science Project — WBS Coding School  
 This project builds on a small 10-song experiment and scales up to a 5,000-song dataset.  
-The goal is to group tracks into playlists and moods using unsupervised learning — mainly **K-Means with PCA** — and to compare results with DBSCAN and Agglomerative Clustering.  
+
+## 🎯 Objective  
+The goal of this project is to create playlists and group songs by moods and styles — for example *Chill Acoustic*, *Happy Dance Pop*, or *Dark & Moody Instrumental* — by finding patterns in the music data.  
 
 ## 📂 Repository Contents
 - 📓 **Project_10_songs.ipynb** — first pass on a 10-song dataset  
@@ -10,13 +12,6 @@ The goal is to group tracks into playlists and moods using unsupervised learning
 - 📓 **Team_Moosic_Project_5000.ipynb** — Agglomerative Clustering + visuals  
 - 📂 **2_spotify_10_songs.csv**, **spotify_5000_songs.csv** — datasets  
 - 📑 [**MOOSIC project presentation (PDF)**](./MOOSIC%20project%20presentation.pdf)  
-
-## 🎯 Objective  
-Create meaningful playlists and mood groups from Spotify audio features by:  
-- Reducing dimensionality with PCA  
-- Clustering with K-Means (main method)  
-- Comparing with DBSCAN and Agglomerative methods  
-- Starting small (10 songs) → scaling to 5,000 songs  
 
 ## 🧑‍💻 Approach  
 
