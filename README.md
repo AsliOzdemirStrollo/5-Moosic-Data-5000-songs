@@ -1,104 +1,76 @@
-<h1>🎵 Moosic Data: 5000 Songs</h1>
+# 🎵 Moosic Data: 5000 Songs  
 
-<h2>Data Science Project — WBS Coding School</h2>
-<p>
-  This project builds on a small 10-song experiment and scales up to a 5,000-song dataset.
-  The goal is to group tracks into playlists and moods using unsupervised learning—
-  mainly <strong>K-Means with PCA</strong>—and to compare results with other clustering approaches.
-</p>
+## Data Science Project — WBS Coding School  
+This project builds on a small 10-song experiment and scales up to a 5,000-song dataset.  
+The goal is to group tracks into playlists and moods using unsupervised learning — mainly **K-Means with PCA** — and to compare results with DBSCAN and Agglomerative Clustering.  
 
-<h3>Repository Contents</h3>
-<ul>
-  <li>📓 <strong>Project_10_songs.ipynb</strong> — first pass on a 10-song dataset</li>
-  <li>📓 <strong>Project_5000_songs.ipynb</strong> — full workflow (K-Means + PCA, DBSCAN)</li>
-  <li>📓 <strong>Team_Moosic_Project_5000.ipynb</strong> — Agglomerative Clustering + visuals</li>
-  <li>📂 <strong>2_spotify_10_songs.csv</strong>, <strong>spotify_5000_songs.csv</strong> — datasets</li>
-  <li>📑 <strong><a href="./MOOSIC%20project%20presentation.pdf">MOOSIC project presentation (PDF)</a></strong></li>
-</ul>
+## 📂 Repository Contents
+- 📓 **Project_10_songs.ipynb** — first pass on a 10-song dataset  
+- 📓 **Project_5000_songs.ipynb** — full workflow (K-Means + PCA, DBSCAN)  
+- 📓 **Team_Moosic_Project_5000.ipynb** — Agglomerative Clustering + visuals  
+- 📂 **2_spotify_10_songs.csv**, **spotify_5000_songs.csv** — datasets  
+- 📑 [**MOOSIC project presentation (PDF)**](./MOOSIC%20project%20presentation.pdf)  
 
-<hr/>
+## 🎯 Objective  
+Create meaningful playlists and mood groups from Spotify audio features by:  
+- Reducing dimensionality with PCA  
+- Clustering with K-Means (main method)  
+- Comparing with DBSCAN and Agglomerative methods  
+- Starting small (10 songs) → scaling to 5,000 songs  
 
-<h2>🎯 Objective</h2>
-<p>
-  Create meaningful playlists and mood groups from Spotify audio features by:
-  reducing dimensionality with PCA, clustering with K-Means, and comparing with DBSCAN and Agglomerative methods.
-  Start small (10 songs) → scale to real-world size (5,000 songs).
-</p>
+## 🧑‍💻 Approach  
 
-<h2>🎼 Dataset Features</h2>
-<p>Each track includes: acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, time_signature, valence.</p>
+### ✅ Final Workflow Summary  
+1. **Load + clean data**  
+   - Deleted non-numerical & categorical columns (`id`, `artist`, `type`, etc.).  
+   - Kept only numerical audio features.  
+   - Set **song names as the index**.  
 
-<h2>🛠 Tools Used</h2>
-<ul>
-  <li>Python (Pandas, scikit-learn, Matplotlib, Seaborn, UMAP, t-SNE)</li>
-  <li>JupyterLab</li>
-  <li>Spotify audio-feature datasets (10 &amp; 5,000 songs)</li>
-</ul>
+2. **Scale features**  
+   - Tried multiple scalers: Standard, MinMax, Robust, Power, Quantile.  
+   - Selected **Quantile Transformer** for handling skewed distributions.  
 
-<hr/>
+3. **PCA → reduce dimensions**  
+   - Reduced high-dimensional data into principal components.  
+   - Checked explained variance to decide components.  
 
-<h2>🧑‍💻 Approach</h2>
+4. **Cluster**  
+   - **K-Means (k=20)** → tidy, balanced playlists (*Project_5000_songs.ipynb*).  
+   - **UMAP + DBSCAN** → natural clusters + outliers (*Project_5000_songs.ipynb*).  
+   - **Agglomerative** → hierarchical relationships (*Team_Moosic_Project_5000.ipynb*).  
 
-<h3>✅ Final Workflow Summary</h3>
-<ol>
-  <li><strong>Load + clean data</strong>
-    <ul>
-      <li>Deleted non-numerical &amp; categorical columns (e.g., <code>id</code>, <code>artist</code>, <code>type</code>).</li>
-      <li>Kept only numerical audio features for clustering.</li>
-      <li>Set <strong>song names as the index</strong> for readability.</li>
-    </ul>
-  </li>
-  <li><strong>Scale features</strong>
-    <ul>
-      <li>Tried multiple scalers: <em>Standard</em>, <em>MinMax</em>, <em>Robust</em>, <em>Power</em>, <em>Quantile</em>.</li>
-      <li>Chose <strong>Quantile Transformer</strong> to handle skewed distributions fairly.</li>
-    </ul>
-  </li>
-  <li><strong>PCA → reduce dimensions</strong>
-    <ul>
-      <li>Compressed features to principal components and reviewed explained variance.</li>
-    </ul>
-  </li>
-  <li><strong>Cluster</strong>
-    <ul>
-      <li><strong>K-Means (k=20)</strong>: main method; evaluated with silhouette scores. <em>(Project_5000_songs.ipynb)</em></li>
-      <li><strong>UMAP + DBSCAN</strong>: natural clusters + outliers. <em>(Project_5000_songs.ipynb)</em></li>
-      <li><strong>Agglomerative Clustering</strong>: hierarchical view. <em>(Team_Moosic_Project_5000.ipynb)</em></li>
-    </ul>
-  </li>
-  <li><strong>Visualize clusters</strong>
-    <ul>
-      <li>PCA scatterplots (presentation-friendly), t-SNE, UMAP; dendrograms for hierarchical results.</li>
-      <li>Compared groupings across methods.</li>
-    </ul>
-  </li>
-  <li><strong>Interpret clusters → musical meaning</strong>
-    <ul>
-      <li>Named playlists (e.g., <em>Chill Acoustic</em>, <em>Dance Pop</em>, <em>Fast Rap</em>, <em>Experimental Instrumental</em>).</li>
-      <li>Printed mood/style summaries like <em>Happy / Danceable / Vocal-Forward / Slow / Chill</em> and
-          <em>Not Dancey / Energetic / Dark/Moody / Instrumental</em>.</li>
-    </ul>
-  </li>
-</ol>
+5. **Visualize clusters**  
+   - PCA scatterplots, t-SNE, UMAP, dendrograms.  
+   - Compared results across methods.  
 
-<hr/>
+6. **Interpret clusters → musical meaning**  
+   - Named playlists (e.g., *Chill Acoustic*, *Dance Pop*, *Fast Rap*, *Experimental Instrumental*).  
+   - Printed **mood/style summaries** such as:  
+     - *Happy / Danceable / Vocal-Forward / Slow / Chill*  
+     - *Not Dancey / Energetic / Dark/Moody / Instrumental*  
 
-<h2>🎧 Results (Summary)</h2>
-<ul>
-  <li><strong>K-Means + PCA</strong>: 20 tidy, balanced playlists; easy to interpret.</li>
-  <li><strong>DBSCAN + UMAP</strong>: natural, mood-rich clusters; includes outliers.</li>
-  <li><strong>Agglomerative</strong>: reveals genre/subgenre relationships; less practical at 5,000+ songs.</li>
-</ul>
-<p><em>See the slides for visuals:</em> <a href="./MOOSIC%20project%20presentation.pdf">MOOSIC project presentation (PDF)</a></p>
+## 🎧 Results  
+- **K-Means + PCA** → 20 tidy playlists, balanced, interpretable.  
+- **DBSCAN + UMAP** → mood-rich clusters with outliers.  
+- **Agglomerative** → genre/subgenre hierarchy, less practical at 5,000 songs.  
 
-<hr/>
+💡 Key insight:  
+- K-Means = tidy & structured.  
+- DBSCAN = faithful & mood-based.  
+- Agglomerative = shows relationships.  
 
-<h2>🎓 Key Learnings</h2>
-<ul>
-  <li>Explored several <strong>data scaling methods</strong> and selected the most suitable one for this data.</li>
-  <li>Good <strong>data preparation</strong> is essential before applying machine learning.</li>
-  <li>Translated technical clusters into <strong>business-relevant insights</strong> (playlists &amp; moods).</li>
-  <li>Starting with a 10-song set helped test ideas before scaling to 5,000 songs.</li>
-  <li>Different dimensionality-reduction &amp; visualization methods (PCA, t-SNE, UMAP) offer complementary views.</li>
-  <li>Team collaboration (<em>Team_Moosic_Project_5000.ipynb</em>) strengthened methods &amp; visuals.</li>
-</ul>
+## 🛠 Tools Used  
+1. Python (Pandas, scikit-learn, Matplotlib, Seaborn, UMAP, t-SNE)  
+2. JupyterLab  
+3. Spotify datasets (10 songs, 5000 songs)  
+
+## 📊 Presentation  
+See slides here: [MOOSIC project presentation (PDF)](./MOOSIC%20project%20presentation.pdf)  
+
+## 🎓 Key Learnings  
+1. Explored several **scaling methods** and chose Quantile Transformer for this dataset.  
+2. Learned the importance of proper **data preparation**.  
+3. Translated technical clusters into **business insights** (playlists & moods).  
+4. Practiced starting small (10 songs) before scaling up (5000 songs).  
+5. Compared dimensionality reduction methods (PCA, t-SNE, UMAP) for different perspectives.  
+6. Collaboration on *Team_Moosic_Project_5000.ipynb* enriched results with extra methods & visuals.  
